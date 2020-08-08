@@ -11,6 +11,14 @@ namespace whitenessToAlpha
     {
         static void Main(string[] args)
         {
+            if (args.Length == 0)
+            {
+                Console.WriteLine("Drag and drop .png image onto this .exe");
+                Console.ReadKey();
+
+                return;
+            }
+
             Bitmap bmp = new Bitmap(args[0]);
 
             int lastPercent = -1;
