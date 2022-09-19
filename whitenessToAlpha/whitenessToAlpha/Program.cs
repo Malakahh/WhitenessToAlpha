@@ -19,7 +19,7 @@ namespace whitenessToAlpha
                 return;
             }
 
-            Bitmap bmp = new Bitmap(args[0]);
+            Bitmap bmp = CreateNonIndexedImage(new Bitmap(args[0]));
 
             int lastPercent = -1;
 
@@ -64,6 +64,18 @@ namespace whitenessToAlpha
                 }
             }
             bmp.Save("new.png");
+        }
+
+        public static Bitmap CreateNonIndexedImage(Image src)
+        {
+            Bitmap newBmp = new Bitmap(src.Width, src.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            using (Graphics gfx = Graphics.FromImage(newBmp))
+            {
+                gfx.DrawImage(src, 0, 0);
+            }
+
+            return newBmp;
         }
     }
 }
